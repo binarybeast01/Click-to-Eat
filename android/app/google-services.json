@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "808858944857",
+    "project_id": "click-to-eat-c4c7b",
+    "storage_bucket": "click-to-eat-c4c7b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:808858944857:android:ca3d2e259a84bf42dcf848",
+        "android_client_info": {
+          "package_name": "com.example.click_to_eat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "808858944857-g8ic6q9jbdt0guojc2a4on1v3f2n5dqr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.click_to_eat",
+            "certificate_hash": "90974336422035c1061a43ed6aae37fc7a1ac1fe"
+          }
+        },
+        {
+          "client_id": "808858944857-lksgg3sqjbtkvcfgsn706iu8d9ufmnbd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWGXgW9JGZekF89WiljmZoffFhuovl7Gw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "808858944857-lksgg3sqjbtkvcfgsn706iu8d9ufmnbd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
