@@ -6,7 +6,7 @@ class Headers extends ChangeNotifier {
     return Padding(
       padding: const EdgeInsets.only(top: 40.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(icon: Icon(FontAwesomeIcons.userAlt), onPressed: () {}),
           Row(

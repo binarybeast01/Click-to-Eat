@@ -1,3 +1,4 @@
+import 'package:click_to_eat/Helpers/Footer.dart';
 import 'package:click_to_eat/Helpers/Headers.dart';
 import 'package:click_to_eat/Helpers/MiddleBody.dart';
 import 'package:click_to_eat/Services/ManageData.dart';
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: Headers()),
         ChangeNotifierProvider.value(value: MiddleHelpers()),
         ChangeNotifierProvider.value(value: ManageData()),
-        ],
+        ChangeNotifierProvider.value(value: Footers()),
+      ],
       child: MaterialApp(
         title: 'Click to Eat',
         debugShowCheckedModeBanner: false,

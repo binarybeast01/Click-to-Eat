@@ -1,3 +1,4 @@
+import 'package:click_to_eat/Helpers/Footer.dart';
 import 'package:click_to_eat/Helpers/Headers.dart';
 import 'package:click_to_eat/Helpers/MiddleBody.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Footers().floatingActionButton(context),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
@@ -25,6 +27,8 @@ class _HomePageState extends State<HomePage> {
               Divider(),
               MiddleHelpers().favText(),
               MiddleHelpers().favData(context, 'favourite'),
+              MiddleHelpers().favTextExplore(),
+              MiddleHelpers().dataBuisness(context, 'Buisness'),
             ],
           ),
         ),

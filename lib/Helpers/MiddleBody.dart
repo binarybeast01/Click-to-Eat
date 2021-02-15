@@ -1,9 +1,11 @@
 import 'package:click_to_eat/Services/ManageData.dart';
+import 'package:click_to_eat/Views/DetailsScreen.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class MiddleHelpers extends ChangeNotifier {
@@ -46,7 +48,16 @@ class MiddleHelpers extends ChangeNotifier {
             itemCount: snapshot.data.length,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushReplacement(
+                      context,
+                      PageTransition(
+                        child: DetailsScreen(
+                          queryDocumentSnapshot: snapshot.data[index],
+                        ),
+                        type: PageTransitionType.topToBottom,
+                      ));
+                },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
@@ -161,19 +172,138 @@ class MiddleHelpers extends ChangeNotifier {
     );
   }
 
-  Widget dataBuisness(BuildContext context) {
+  Widget favTextExplore() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 20.0),
+      child: RichText(
+          text: TextSpan(
+        text: "Explore new",
+        style: TextStyle(shadows: [
+          BoxShadow(color: Colors.black, blurRadius: 1.0),
+        ], fontWeight: FontWeight.w600, color: Colors.black, fontSize: 29.0),
+        children: <TextSpan>[
+          TextSpan(
+            text: " dishes",
+            style: TextStyle(shadows: [
+              BoxShadow(color: Colors.grey, blurRadius: 0),
+            ], fontSize: 22.0, fontWeight: FontWeight.w500, color: Colors.grey),
+          ),
+        ],
+      )),
+    );
+  }
+
+  Widget dataBuisness(BuildContext context, String collection) {
     return Container(
       height: 400.0,
       child: FutureBuilder(
-        future: Provider.of<ManageData>(context, listen: false)
-            .fetchData(collection),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          return Center(
-            child: Lottie.network(
-                "https://assets3.lottiefiles.com/packages/lf20_vf2Men.json"),
-          );
-        }
-      ),
+          future: Provider.of<ManageData>(context, listen: false)
+              .fetchData(collection),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: Lottie.network(
+                    "https://assets3.lottiefiles.com/packages/lf20_vf2Men.json"),
+              );
+            } else {
+              return ListView.builder(
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () {},
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 10.0, right: 10.0, bottom: 30.0),
+                        child: SingleChildScrollView(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.grey.shade200,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      snapshot.data[index].data()['name'],
+                                      style: TextStyle(
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                    ),
+                                    Text(
+                                      snapshot.data[index].data()['category'],
+                                      style: TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.cyan),
+                                    ),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          FontAwesomeIcons.rupeeSign,
+                                          size: 12,
+                                          color: Colors.cyan,
+                                        ),
+                                        Text(
+                                          snapshot.data[index]
+                                              .data()['discount']
+                                              .toString(),
+                                          style: TextStyle(
+                                              fontSize: 16.0,
+                                              decoration:
+                                                  TextDecoration.lineThrough,
+                                              fontWeight: FontWeight.w300,
+                                              color: Colors.cyan),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          FontAwesomeIcons.rupeeSign,
+                                          size: 12,
+                                        ),
+                                        Text(
+                                          snapshot.data[index]
+                                              .data()['price']
+                                              .toString(),
+                                          style: TextStyle(
+                                              fontSize: 16.0,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: SizedBox(
+                                    height: 150.0,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.network(
+                                        snapshot.data[index].data()['image'],
+                                        fit: BoxFit.cover,
+                                        height: 60.0,
+                                        width: 200.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  });
+            }
+          }),
     );
   }
 }
