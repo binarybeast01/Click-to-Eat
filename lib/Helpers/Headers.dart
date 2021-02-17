@@ -11,12 +11,12 @@ class Headers extends ChangeNotifier {
           IconButton(icon: Icon(FontAwesomeIcons.userAlt), onPressed: () {}),
           Row(
             children: [
-              Icon(FontAwesomeIcons.locationArrow),
+              Icon(FontAwesomeIcons.mapMarkerAlt),
               Text(
-                "Bla Bla Bla Bla",
+                " Jamnagar, Gujarat",
                 style: TextStyle(
                   color: Colors.grey.shade600,
-                  fontSize: 12.0,
+                  fontSize: 18.0,
                   fontWeight: FontWeight.w300,
                 ),
               ),
@@ -76,7 +76,7 @@ class Headers extends ChangeNotifier {
               width: 100.0,
               child: Center(
                 child: Text(
-                  "All Food",
+                  "All Food 😋",
                   style:
                       TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                 ),
@@ -97,7 +97,7 @@ class Headers extends ChangeNotifier {
               width: 100.0,
               child: Center(
                 child: Text(
-                  "Pasta",
+                  "Pasta 🍝",
                   style:
                       TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                 ),
@@ -118,7 +118,7 @@ class Headers extends ChangeNotifier {
               width: 100.0,
               child: Center(
                 child: Text(
-                  "Pizza",
+                  "Pizza 🍕",
                   style:
                       TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                 ),

@@ -20,7 +20,7 @@ class MiddleHelpers extends ChangeNotifier {
         ], fontWeight: FontWeight.w600, color: Colors.black, fontSize: 29.0),
         children: <TextSpan>[
           TextSpan(
-            text: " dishes",
+            text: " dishes 🍽️",
             style: TextStyle(shadows: [
               BoxShadow(color: Colors.grey, blurRadius: 0),
             ], fontSize: 22.0, fontWeight: FontWeight.w500, color: Colors.grey),
@@ -103,7 +103,7 @@ class MiddleHelpers extends ChangeNotifier {
                             snapshot.data[index].data()['name'],
                             style: TextStyle(
                               fontSize: 18.0,
-                              fontWeight: FontWeight.w200,
+                              fontWeight: FontWeight.w500,
                               color: Colors.black,
                             ),
                           ),
@@ -174,10 +174,10 @@ class MiddleHelpers extends ChangeNotifier {
 
   Widget favTextExplore() {
     return Padding(
-      padding: const EdgeInsets.only(top: 20.0),
+      padding: const EdgeInsets.only(top: 20.0, bottom: 10.0),
       child: RichText(
           text: TextSpan(
-        text: "Explore new",
+        text: "Explore 🆕",
         style: TextStyle(shadows: [
           BoxShadow(color: Colors.black, blurRadius: 1.0),
         ], fontWeight: FontWeight.w600, color: Colors.black, fontSize: 29.0),

@@ -1,4 +1,5 @@
 import 'package:click_to_eat/Views/HomePage.dart';
+import 'package:click_to_eat/Views/MyCart.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -205,7 +206,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          "Onion 🧅",
+                          "Onion 🧅  ",
                           style: TextStyle(
                               color: Colors.grey.shade500, fontSize: 25.0),
                         ),
@@ -230,7 +231,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          "Sauce 🌶️",
+                          "Sauce 🌶️ ",
                           style: TextStyle(
                               color: Colors.grey.shade500, fontSize: 25.0),
                         ),
@@ -344,7 +345,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
         Stack(
           children: [
             FloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(context, PageTransition(child: MyCart(), type: PageTransitionType.bottomToTop),);
+              },
               child: Icon(EvaIcons.shoppingCart),
             ),
             Positioned(
