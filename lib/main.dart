@@ -2,6 +2,7 @@ import 'package:click_to_eat/Helpers/Footer.dart';
 import 'package:click_to_eat/Helpers/Headers.dart';
 import 'package:click_to_eat/Helpers/MiddleBody.dart';
 import 'package:click_to_eat/Services/ManageData.dart';
+import 'package:click_to_eat/Services/Maps.dart';
 import 'package:click_to_eat/Views/HomePage.dart';
 import 'package:click_to_eat/Views/SplashScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: MiddleHelpers()),
         ChangeNotifierProvider.value(value: ManageData()),
         ChangeNotifierProvider.value(value: Footers()),
+        ChangeNotifierProvider.value(value: GenrateMaps()),
       ],
       child: MaterialApp(
         title: 'Click to Eat',
