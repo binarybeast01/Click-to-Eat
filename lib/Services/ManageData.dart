@@ -1,11 +1,21 @@
+import 'package:click_to_eat/Providers/Authentication.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class ManageData extends ChangeNotifier{
+class ManageData extends ChangeNotifier {
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  Future fetchData(String collection) async{
-    QuerySnapshot querySnapshot = await firebaseFirestore.collection(collection).get();
+  Future fetchData(String collection) async {
+    QuerySnapshot querySnapshot =
+        await firebaseFirestore.collection(collection).get();
     return querySnapshot.docs;
+  }
+
+  Future submitData(BuildContext context, dynamic data) async {
+    return FirebaseFirestore.instance
+        .collection('myOrders')
+        .doc(Provider.of<Authentication>(context, listen: false).getUid)
+        .set(data);
   }
 }

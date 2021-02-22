@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:click_to_eat/Providers/Calculations.dart';
 import 'package:click_to_eat/Views/HomePage.dart';
 import 'package:click_to_eat/Views/MyCart.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -5,6 +8,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class DetailsScreen extends StatefulWidget {
   final QueryDocumentSnapshot queryDocumentSnapshot;
@@ -55,8 +59,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
             }),
         Padding(
           padding: const EdgeInsets.only(left: 310),
-          child:
-              IconButton(icon: Icon(FontAwesomeIcons.trash), onPressed: () {}),
+          child: IconButton(
+              icon: Icon(FontAwesomeIcons.trash),
+              onPressed: () {
+                Provider.of<Calculations>(context, listen: false)
+                    .clearAllData();
+              }),
         ),
       ],
     );
@@ -188,16 +196,28 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         Row(
                           children: [
                             IconButton(
-                                icon: Icon(EvaIcons.minus), onPressed: () {}),
+                                icon: Icon(EvaIcons.minus),
+                                onPressed: () {
+                                  Provider.of<Calculations>(context,
+                                          listen: false)
+                                      .removeCheese();
+                                }),
                             Text(
-                              '$cheeseValue',
+                              Provider.of<Calculations>(context, listen: true)
+                                  .getCheeseValue
+                                  .toString(),
                               style: TextStyle(
                                 fontSize: 25.0,
                                 color: Colors.grey.shade500,
                               ),
                             ),
                             IconButton(
-                                icon: Icon(EvaIcons.plus), onPressed: () {}),
+                                icon: Icon(EvaIcons.plus),
+                                onPressed: () {
+                                  Provider.of<Calculations>(context,
+                                          listen: false)
+                                      .addCheese();
+                                }),
                           ],
                         ),
                       ],
@@ -213,16 +233,28 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         Row(
                           children: [
                             IconButton(
-                                icon: Icon(EvaIcons.minus), onPressed: () {}),
+                                icon: Icon(EvaIcons.minus),
+                                onPressed: () {
+                                  Provider.of<Calculations>(context,
+                                          listen: false)
+                                      .removeOnions();
+                                }),
                             Text(
-                              '$onionValue',
+                              Provider.of<Calculations>(context, listen: true)
+                                  .getOnionValue
+                                  .toString(),
                               style: TextStyle(
                                 fontSize: 25.0,
                                 color: Colors.grey.shade500,
                               ),
                             ),
                             IconButton(
-                                icon: Icon(EvaIcons.plus), onPressed: () {}),
+                                icon: Icon(EvaIcons.plus),
+                                onPressed: () {
+                                  Provider.of<Calculations>(context,
+                                          listen: false)
+                                      .addOnion();
+                                }),
                           ],
                         ),
                       ],
@@ -238,16 +270,28 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         Row(
                           children: [
                             IconButton(
-                                icon: Icon(EvaIcons.minus), onPressed: () {}),
+                                icon: Icon(EvaIcons.minus),
+                                onPressed: () {
+                                  Provider.of<Calculations>(context,
+                                          listen: false)
+                                      .removeSauce();
+                                }),
                             Text(
-                              '$sauceValue',
+                              Provider.of<Calculations>(context, listen: true)
+                                  .getSauceValue
+                                  .toString(),
                               style: TextStyle(
                                 fontSize: 25.0,
                                 color: Colors.grey.shade500,
                               ),
                             ),
                             IconButton(
-                                icon: Icon(EvaIcons.plus), onPressed: () {}),
+                                icon: Icon(EvaIcons.plus),
+                                onPressed: () {
+                                  Provider.of<Calculations>(context,
+                                          listen: false)
+                                      .addSauce();
+                                }),
                           ],
                         ),
                       ],
@@ -261,10 +305,16 @@ class _DetailsScreenState extends State<DetailsScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               GestureDetector(
-                onTap: (){},
+                onTap: () {
+                  Provider.of<Calculations>(context, listen: false)
+                      .selectedSmallSize();
+                },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Provider.of<Calculations>(context, listen: true)
+                            .smallTapped
+                        ? Colors.red
+                        : Colors.white,
                     border: Border.all(color: Colors.red),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
@@ -278,10 +328,16 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 ),
               ),
               GestureDetector(
-                onTap: (){},
+                onTap: () {
+                  Provider.of<Calculations>(context, listen: false)
+                      .selectedMediumSize();
+                },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Provider.of<Calculations>(context, listen: true)
+                            .mediumTapped
+                        ? Colors.red
+                        : Colors.white,
                     border: Border.all(color: Colors.red),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
@@ -295,10 +351,16 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 ),
               ),
               GestureDetector(
-                onTap: (){},
+                onTap: () {
+                  Provider.of<Calculations>(context, listen: false)
+                      .selectedLageSize();
+                },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Provider.of<Calculations>(context, listen: true)
+                            .largeTapped
+                        ? Colors.red
+                        : Colors.white,
                     border: Border.all(color: Colors.red),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
@@ -323,13 +385,31 @@ class _DetailsScreenState extends State<DetailsScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Provider.of<Calculations>(context, listen: false)
+                .addToCart(context, {
+              'image': widget.queryDocumentSnapshot['image'],
+              'name': widget.queryDocumentSnapshot['name'],
+              'price': widget.queryDocumentSnapshot['price'],
+              'onion':
+                  Provider.of(context)<Calculations>(context, listen: false)
+                      .getOnionValue,
+              'cheese':
+                  Provider.of(context)<Calculations>(context, listen: false)
+                      .getCheeseValue,
+              'Sauce':
+                  Provider.of(context)<Calculations>(context, listen: false)
+                      .getSauceValue,
+              'size': Provider.of(context)<Calculations>(context, listen: false)
+                  .getSize,
+            });
+          },
           child: Container(
             width: 250.0,
             height: 50.0,
             decoration: BoxDecoration(
               color: Colors.red.shade500,
-              borderRadius: BorderRadius.circular(50.0),
+              borderRadius: BorderRadius.circular(50.0), 
             ),
             child: Center(
               child: Text(
@@ -346,7 +426,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
           children: [
             FloatingActionButton(
               onPressed: () {
-                Navigator.pushReplacement(context, PageTransition(child: MyCart(), type: PageTransitionType.bottomToTop),);
+                Navigator.pushReplacement(
+                  context,
+                  PageTransition(
+                      child: MyCart(), type: PageTransitionType.bottomToTop),
+                );
               },
               child: Icon(EvaIcons.shoppingCart),
             ),

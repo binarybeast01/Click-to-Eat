@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:click_to_eat/Views/HomePage.dart';
+import 'package:click_to_eat/Views/Login.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
@@ -16,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
         Duration(seconds: 3),
         () => Navigator.pushReplacement(
-            context, PageTransition(child: HomePage(), type: PageTransitionType.leftToRightWithFade)));
+            context, PageTransition(child: LoginScreen(), type: PageTransitionType.leftToRightWithFade)));
     super.initState();
   }
 

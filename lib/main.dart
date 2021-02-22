@@ -1,6 +1,8 @@
 import 'package:click_to_eat/Helpers/Footer.dart';
 import 'package:click_to_eat/Helpers/Headers.dart';
 import 'package:click_to_eat/Helpers/MiddleBody.dart';
+import 'package:click_to_eat/Providers/Authentication.dart';
+import 'package:click_to_eat/Providers/Calculations.dart';
 import 'package:click_to_eat/Services/ManageData.dart';
 import 'package:click_to_eat/Services/Maps.dart';
 import 'package:click_to_eat/Views/HomePage.dart';
@@ -21,6 +23,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider.value(value: Calculations()),
+        ChangeNotifierProvider.value(value: Authentication()),
         ChangeNotifierProvider.value(value: Headers()),
         ChangeNotifierProvider.value(value: MiddleHelpers()),
         ChangeNotifierProvider.value(value: ManageData()),
